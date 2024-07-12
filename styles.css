@@ -188,7 +188,7 @@
 body {
   overflow-x: hidden;
   min-height: 100vh;
-  min-width: 448px;
+  min-width: 320px;
   display: flex;
   padding: 2.5rem 16rem;
   gap: 2rem;
