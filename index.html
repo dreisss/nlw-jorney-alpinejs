@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NLW Jorney</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://unpkg.com/tailwindcss@3.4.4" />
+    <link rel="preconnect" href="https://unpkg.com/lucide@latest" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@3.4.4/src/css/preflight.css" />
+    <link rel="stylesheet" href="./styles.css" />
+
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+  </head>
+
+  <body x-data="data">
+    <aside>
+      <header>
+        <i data-lucide="map-pin"></i>
+        <h3 x-text="location" class="body-sm"></h3>
+      </header>
+
+      <form @submit.prevent="submit">
+        <div>
+          <label class="input-label">
+            <i data-lucide="tag"></i>
+            <input x-model="activity" placeholder="Qual a atividade?" type="text" required />
+          </label>
+
+          <label class="input-label">
+            <i data-lucide="calendar"></i>
+            <input x-model="date" type="date" required />
+          </label>
+
+          <label class="input-label">
+            <i data-lucide="clock"></i>
+            <input x-model="hour" type="time" required />
+          </label>
+        </div>
+
+        <button class="btn">Salvar atividade</button>
+      </form>
+    </aside>
+
+    <main>
+      <div>
+        <h1 class="heading-lg">Atividades</h1>
+
+        <button @click="activities = []">
+          <i data-lucide="trash-2"></i>
+        </button>
+      </div>
+
+      <ul>
+        <template x-if="activities.length == 0">
+          <li class="no-activity">
+            <p class="body-sm">Nenhuma atividade cadastrada.</p>
+          </li>
+        </template>
+
+        <template x-for="activity in activities" x-key="activity.name">
+          <li class="activity" :class="activity.done ? 'done' : ''" :init="lucide.createIcons()">
+            <label>
+              <i data-lucide="circle-check" class="done"></i>
+              <i data-lucide="circle-dashed" class="notdone"></i>
+
+              <input x-model="activity.done" type="checkbox" />
+            </label>
+
+            <p x-text="activity.name"></p>
+            <p
+              x-text="dayjs(activity.date).format('dddd') + ', dia ' + dayjs(activity.date).format('DD') + ' às ' + activity.hour + 'h'"
+            ></p>
+          </li>
+        </template>
+      </ul>
+    </main>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
