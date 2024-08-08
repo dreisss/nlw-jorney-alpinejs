@@ -1,4 +1,8 @@
-<img src="./.github/assets/nlw.svg" height="32px" /> &nbsp; &nbsp; <img src="./.github/assets/journey.svg" height="32px" />
+<div align="center">
+  <img src="./.github/assets/nlw-journey.webp" />
+</div>
+
+<br />
 
 Aplicação desenvolvida durante o evento `nlw journey` da Rocketseat (trilha HTML, CSS e JS).
 
